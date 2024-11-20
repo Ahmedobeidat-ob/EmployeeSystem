@@ -28,7 +28,7 @@ namespace IGTask.Core.Data
         public string HomeAddress { get; set; }
 
         [Url] 
-        //
+        //1
         public string Photo { get; set; }
     }
 }
