@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IGTask", "IGTask\IGTask.csproj", "{97FB18EE-4378-4EE7-A715-76E6B28BF3CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IGTask.Infra", "IGTask.Infra\IGTask.Infra.csproj", "{B133BE00-FB81-426C-AC7D-6D5B89D1C18C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IGTask.Core", "IGTask.Core\IGTask.Core.csproj", "{BEB097E4-8634-49E6-8DA8-CB1B15D387EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97FB18EE-4378-4EE7-A715-76E6B28BF3CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97FB18EE-4378-4EE7-A715-76E6B28BF3CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97FB18EE-4378-4EE7-A715-76E6B28BF3CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97FB18EE-4378-4EE7-A715-76E6B28BF3CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B133BE00-FB81-426C-AC7D-6D5B89D1C18C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B133BE00-FB81-426C-AC7D-6D5B89D1C18C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B133BE00-FB81-426C-AC7D-6D5B89D1C18C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B133BE00-FB81-426C-AC7D-6D5B89D1C18C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEB097E4-8634-49E6-8DA8-CB1B15D387EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEB097E4-8634-49E6-8DA8-CB1B15D387EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEB097E4-8634-49E6-8DA8-CB1B15D387EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEB097E4-8634-49E6-8DA8-CB1B15D387EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DB9669B2-3AAE-4B06-AEF6-19043854FBB7}
+	EndGlobalSection
+EndGlobal
