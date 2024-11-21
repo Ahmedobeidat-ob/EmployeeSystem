@@ -1,7 +1,13 @@
 
+using IGTask.Core.Configrations;
 using IGTask.Core.Data;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using IGTask.Core.IRepository;
+using IGTask.Infra.Repository;
+using IGTask.Core.IService;
+using IGTask.Infra.Service;
 
 namespace IGTask
 {
@@ -40,6 +46,9 @@ namespace IGTask
                 option.UseSqlServer(connectionString);
             });
             // Add services to the container.
+            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            builder.Services.AddScoped<IEmployeesService, EmployeesService>();
+            builder.Services.AddScoped<IEmployeesRepository, EmployeesRepository>();
 
             builder.Services.AddCors(option =>
             {
@@ -48,12 +57,21 @@ namespace IGTask
                 .AllowAnyMethod());
             });
             builder.Services.AddControllers();
+
+            // Enable static file serving
+            builder.Services.AddDirectoryBrowser();
+
+         
+
+          
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddAutoMapper(typeof(MapperConfig));
             var app = builder.Build();
-
+            // Serve static files
+            app.UseStaticFiles();
+            app.UseDirectoryBrowser();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

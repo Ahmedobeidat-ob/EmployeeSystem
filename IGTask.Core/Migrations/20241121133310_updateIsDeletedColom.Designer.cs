@@ -4,6 +4,7 @@ using IGTask.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IGTask.Core.Migrations
 {
     [DbContext(typeof(IGTaskDbContext))]
-    partial class IGTaskDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241121133310_updateIsDeletedColom")]
+    partial class updateIsDeletedColom
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
