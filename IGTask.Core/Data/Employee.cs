@@ -30,5 +30,12 @@ namespace IGTask.Core.Data
         [Url] 
      
         public string Photo { get; set; }
+
+        public DateTime ModifyDate { get; set; }= DateTime.Now;
+
+        public DateTime CreateDate { get; set; } = DateTime.Now;
+
+        public bool IsDeleted { get; set; }
+
     }
 }
