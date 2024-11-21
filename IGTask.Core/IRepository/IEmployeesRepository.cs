@@ -9,5 +9,7 @@ namespace IGTask.Core.IRepository
 {
     public interface IEmployeesRepository:IGenericRepository<Employee>
     {
+
+       
     }
 }

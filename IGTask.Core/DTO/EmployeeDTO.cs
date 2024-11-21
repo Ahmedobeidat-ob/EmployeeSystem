@@ -5,37 +5,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IGTask.Core.Data
+namespace IGTask.Core.DTO
 {
-    public class Employee
+    public class EmployeeDTO
     {
-        [Key] 
-        public Guid EmployeeId { get; set; } = Guid.NewGuid();
-
         [Required]
-        [MaxLength(100)] 
+        [MaxLength(100)]
         public string Name { get; set; }
 
-        [Required] 
-        [EmailAddress] 
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
-        [Required] 
+        [Required]
         [Phone]
         public string MobileNumber { get; set; }
 
-        [MaxLength(200)] 
+        [MaxLength(200)]
         public string HomeAddress { get; set; }
 
-        [Url] 
-     
-        public string Photo { get; set; }
-
-        public DateTime? ModifyDate { get; set; }
+       
 
         public DateTime CreateDate { get; set; } = DateTime.Now;
 
-        public bool IsDeleted { get; set; } = false;
+        public bool IsDeleted { get; set; }=false;  
 
     }
 }

@@ -8,18 +8,18 @@ namespace IGTask.Core.IRepository
 {
     public interface IGenericRepository<T> where T : class
     {
-        //
+
+
         Task<List<T>> GetAllAsync();
+        Task<T> GetAsync(Guid? id);
 
-        Task<T> GetAsync(int? id);
-
-        Task<T> AddAsync(T entity);
+        Task<T> AddAsync(T entity); 
 
         Task UpdateAsync(T entity);
 
-        Task DeleteAsync(int id);
+        Task SoftDeleteAsync(Guid id);
 
-        Task<bool> Exists(int id);
+        Task<bool> Exists(Guid id);
 
 
     }
