@@ -94,34 +94,30 @@ namespace IGTask.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEmployee(Guid id, [FromForm] EmployeeDTO employee, IFormFile? file)
         {
-            var EMP = _mapper.Map<Employee>(employee);
+            var updatedEmployee = _mapper.Map<Employee>(employee);  // Map DTO to entity
 
-            var existingEmployee = await _service.GetAsync(id);
+            var existingEmployee = await _service.GetAsync(id);  // Fetch the existing employee from the database
             if (existingEmployee == null)
             {
-                return NotFound(); // If the employee is not found, return 404
+                return NotFound(); // Return 404 if the employee is not found
             }
 
-            // Optimistic concurrency check based on ModifyDate
-            if (existingEmployee.ModifyDate != EMP.ModifyDate)
-            {
-                return Conflict("Concurrency conflict detected"); // Return a 409 Conflict if ModifyDate doesn't match
-            }
+          
 
             try
             {
-                // Update employee properties with new data
-                existingEmployee.Name = EMP.Name;
-                existingEmployee.Email = EMP.Email;
-                existingEmployee.MobileNumber = EMP.MobileNumber;
-                existingEmployee.HomeAddress = EMP.HomeAddress;
-                existingEmployee.IsDeleted = EMP.IsDeleted;
-                existingEmployee.ModifyDate = DateTime.UtcNow; // Update the ModifyDate to current time
+                // Update employee fields
+                existingEmployee.Name = updatedEmployee.Name;
+                existingEmployee.Email = updatedEmployee.Email;
+                existingEmployee.MobileNumber = updatedEmployee.MobileNumber;
+                existingEmployee.HomeAddress = updatedEmployee.HomeAddress;
+                existingEmployee.IsDeleted = updatedEmployee.IsDeleted;
+                existingEmployee.ModifyDate = DateTime.UtcNow;  // Update ModifyDate to current time
 
-                // Handle photo update (if a new photo is uploaded)
-                if (file != null) // Check if there's a new photo uploaded
+                // Handle photo upload if a new file is provided
+                if (file != null)
                 {
-                    // Generate a unique filename for the new photo
+                    // Generate a unique filename for the uploaded file
                     var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
                     var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "employee", fileName);
 
@@ -129,30 +125,31 @@ namespace IGTask.Controllers
                     var directoryPath = Path.GetDirectoryName(uploadPath);
                     if (!Directory.Exists(directoryPath))
                     {
-                        Directory.CreateDirectory(directoryPath);
+                        Directory.CreateDirectory(directoryPath);  // Create directory if not exists
                     }
 
-                    // Save the new photo file to the server
+                    // Save the uploaded photo to the server
                     using (var stream = new FileStream(uploadPath, FileMode.Create))
                     {
-                        await file.CopyToAsync(stream); // Save the file asynchronously
+                        await file.CopyToAsync(stream);  // Asynchronously save the file
                     }
 
-                    // Update the employee's photo field with the new file path
-                    existingEmployee.Photo = Path.Combine("uploads", "employee", fileName); // Store relative path
+                    // Update the employee photo path
+                    existingEmployee.Photo = Path.Combine("uploads", "employee", fileName);  // Store relative path to photo
                 }
 
-                // Update the employee in the service layer
+                // Update the employee in the database
                 await _service.UpdateAsync(existingEmployee);
 
-                return NoContent(); // Return 204 No Content on successful update
+                return NoContent();  // 204 No Content on successful update
             }
             catch (Exception ex)
             {
-                // Handle exceptions and return a 500 Internal Server Error
+                // Handle unexpected errors and return 500 Internal Server Error
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
 
 
 
